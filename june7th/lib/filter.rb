@@ -3,8 +3,8 @@ class Filter
     LOWER_DEFAULT = 40
     def bandpass(track, upper = UPPER_DEFAULT, lower = LOWER_DEFAULT)
         updated_track = []
-        value_check(track)
         track.each do | note | 
+            value_check(note)
             if note > upper 
                 updated_track.push(upper)
             elsif note < lower 
@@ -16,9 +16,7 @@ class Filter
         return updated_track
     end 
 
-    def value_check(array)
-        array.each do | note |
-            fail "non positive integer value present" if (note != Integer) || note < 1 && note.Integer? 
-        end 
+    def value_check(note)
+            fail "non positive integer value present" if !note.is_a?(Integer) || note < 1
     end
 end 
